@@ -11,7 +11,7 @@
             background-color: #f0f0f0;
             padding: 20px;
         }
-        
+
         #referralForm {
             max-width: 600px;
             margin: 0 auto;
@@ -20,10 +20,10 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         #referralForm label,
-        #referralForm input[type="radio"], 
-        #referralForm input[type="text"], 
+        #referralForm input[type="radio"],
+        #referralForm input[type="text"],
         #referralForm input[type="submit"] {
             display: block;
             width: 100%;
@@ -42,24 +42,24 @@
             font-size: 14px;
             font-weight: bold;
         }
-        
+
         #referralForm input[type="radio"] {
             display: inline-block;
             width: auto;
             margin-right: 10px;
         }
-        
+
         #referralForm input[type="submit"] {
             background-color: #4CAF50;
             color: white;
             border: none;
             cursor: pointer;
         }
-        
+
         #referralForm input[type="submit"]:hover {
             background-color: #45a049;
         }
-        
+
         #result {
             max-width: 600px;
             margin: 20px auto;
@@ -68,6 +68,23 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        }
+
+        #copyButton {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #copyButton:hover {
+            background-color: #007B9E;
         }
     </style>
 </head>
@@ -99,6 +116,7 @@
     </div>
 
     <div id="result"></div>
+    <button id="copyButton" style="display: none;">Copy</button>
 
     <script>
         document.getElementById('referralForm').addEventListener('submit', function(event) {
@@ -124,6 +142,20 @@
 
             // Display the message in the result div
             document.getElementById('result').innerText = message;
+
+            // Show the copy button
+            var copyButton = document.getElementById('copyButton');
+            copyButton.style.display = 'block';
+
+            // Add event listener to copy button
+            copyButton.addEventListener('click', function() {
+                var resultText = document.getElementById('result').innerText;
+                navigator.clipboard.writeText(resultText).then(function() {
+                    alert('Text copied to clipboard');
+                }, function(err) {
+                    alert('Failed to copy text: ', err);
+                });
+            });
         });
     </script>
 </body>
