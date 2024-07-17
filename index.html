@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Referral Message Writer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        
+        #referralForm {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #referralForm label,
+        #referralForm input[type="radio"], 
+        #referralForm input[type="text"], 
+        #referralForm input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #referralForm label {
+            padding: 0;
+            margin: 0;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        #referralForm input[type="radio"] {
+            display: inline-block;
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        #referralForm input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        #referralForm input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        #result {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="referralForm">
+            <label for="yourJobTypeSDE">Job Type</label>
+            <input id="yourJobTypeSDE" type="radio" name="My-Profile" value="Software Development" required> Software Development
+            <br>
+            <input id="yourJobTypeGD" type="radio" name="My-Profile" value="Graphics Designing" required> Graphics Designing
+            <br>
+            <label for="personName">Name of Person Approached</label>
+            <input id="personName" type="text" placeholder="Name of Person Approached" required>
+            <br>
+            <label for="companyName">Company Name</label>
+            <input id="companyName" type="text" placeholder="Company Name" required>
+            <br>
+            <label for="jobProfile">Job Profile</label>
+            <input id="jobProfile" type="text" placeholder="Job Profile" required>
+            <br>
+            <label for="jobId">Job ID</label>
+            <input id="jobId" type="text" placeholder="Job ID" required>
+            <br>
+            <label for="jobLink">Job Link</label>
+            <input id="jobLink" type="text" placeholder="Job Link" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('referralForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get form values
+            var jobType = document.querySelector('input[name="My-Profile"]:checked').value;
+            var personName = document.getElementById('personName').value;
+            var companyName = document.getElementById('companyName').value;
+            var jobProfile = document.getElementById('jobProfile').value;
+            var jobId = document.getElementById('jobId').value;
+            var jobLink = document.getElementById('jobLink').value;
+
+            var message = "";
+
+            if (jobType === "Software Development") {
+                message = `Referral for ${jobProfile} for JobID: ${jobId}.\n\nHi ${personName},\n\n\tHope this message finds you well. I am Priyanshu Kumar and I am really keen to work for ${companyName}. There is a job opening at your company which fits me very well with Job Link: ${jobLink}.\n\nI am a Graduate B-Tech student majoring in CSE in 2024 from United College of Engineering and Management. Along with this, I have also interned at CodeClause, Nishu Sales Corporation, and doing Freelancing. Some of my main skills include Web Development [HTML, CSS, JS, MongoDB, ExpressJS, NodeJS, etc]. Mobile Development [(MERN Stack), Flutter Framework] and also algorithmic approach using C, C++, Python, Java.\n\nHere is my portfolio - https://priyanshukumar9.super.site\n\nThis job role will boost my career and I will be able to apply my skills at an Industry level.\n\nHere is my Resume. Thank you for making time to attend to my request.\n\nHope you have a great day!`;
+            } else if (jobType === "Graphics Designing") {
+                message = `Referral for ${jobProfile} for JobID: ${jobId}\n\n\tHi ${personName},\n\nHope this message finds you well. I am Priyanshu Kumar and I am really keen to work for ${companyName}. There is a job opening at your company which fits me very well with Job Link: ${jobLink}.\n\nI am a Graduate BTech student majoring in CSE in 2024 from United College of Engineering and Management. Before this, I have also interned at SVN Group of Schools and Nishu Sales Corporation, as well as doing Freelancing. Some of my main skills include UI/UX design, prototyping, and wireframing. I am proficient in using tools like Figma, Webflow, Adobe Illustrator, Adobe InDesign, and more. Here is my portfolio: https://priyanshukumar9.super.site\n\nThis job role will boost my career, and I will be able to apply my skills at an industry level.\n\nHere is my resume. Thank you for making time to attend to my request.\n\nHope you have a great day!`;
+            } else {
+                message = "This is the default case.";
+            }
+
+            // Display the message in the result div
+            document.getElementById('result').innerText = message;
+        });
+    </script>
+</body>
+</html>
